@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpTools.CodeReader.Contracts\CSharpTools.CodeReader.Contracts.csproj" />
+    <ProjectReference Include="..\CSharpTools.Contracts\CSharpTools.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
