@@ -7,10 +7,20 @@ namespace CSharpTools.CodeReader.Domain
 {
     public class InterfacePropertyBuilder : IBuilder<Interface.Property, PropertyDeclarationSyntax>
     {
-        public Interface.Property Build(PropertyDeclarationSyntax input)
+        private readonly IBuilder<TypeName, TypeSyntax> typeBuilder;
+
+        public InterfacePropertyBuilder(
+            IBuilder<TypeName, TypeSyntax> typeBuilder)
+        {
+            this.typeBuilder = typeBuilder;
+        }
+
+        public Interface.Property Build(PropertyDeclarationSyntax propertyNode)
         {
             return new Interface.Property
             {
+                Name=propertyNode.Identifier.ValueText,
+                Type=typeBuilder.Build(propertyNode.Type)
             };
         }
     }

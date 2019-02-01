@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSharpTools.Generic.Contracts
+namespace CSharpTools.TestData.Contracts
 {
     public interface Interface1
     {

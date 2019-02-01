@@ -22,7 +22,7 @@ namespace CSharpTools.CodeReader.Domain
             this.namespaceGenerator = namespaceGenerator;
         }
 
-        IEnumerable<Type> Read()
+        public IEnumerable<Type> Read()
         {
             var root = (CompilationUnitSyntax) CSharpSyntaxTree
                 .ParseText(reader.Read())
