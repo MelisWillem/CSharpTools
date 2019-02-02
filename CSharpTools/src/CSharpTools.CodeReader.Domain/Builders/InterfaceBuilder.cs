@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
 
-namespace CSharpTools.CodeReader.Domain
+namespace CSharpTools.CodeReader.Domain.Builders
 {
     public class InterfaceBuilder : IBuilder<Interface, InterfaceDeclarationSyntax>
     {

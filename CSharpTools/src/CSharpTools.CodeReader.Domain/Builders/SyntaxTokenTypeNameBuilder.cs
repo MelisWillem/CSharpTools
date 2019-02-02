@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpTools.CodeReader.Domain
+namespace CSharpTools.CodeReader.Domain.Builders
 {
     public class SyntaxTokenTypeNameBuilder : IBuilder<TypeName, SyntaxToken>
     {

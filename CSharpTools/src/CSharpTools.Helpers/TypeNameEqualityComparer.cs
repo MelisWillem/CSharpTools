@@ -1,7 +1,8 @@
 ﻿using CSharpTools.Entities;
+using CSharpTools.Generic.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace CSharpTools.Helpers
 {
@@ -9,7 +10,7 @@ namespace CSharpTools.Helpers
     {
         public bool Equals(TypeName x, TypeName y)
             => x.Name == y.Name
-            && x.Namespace == y.Namespace;
+            && x.Namespace.GetValueOrEmpty().SequenceEqual(y.Namespace.GetValueOrEmpty()) ; 
 
         public int GetHashCode(TypeName obj)
         {

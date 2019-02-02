@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace CSharpTools.TestData.Contracts
+{
+    public interface Interface2
+    {
+		public int Test{get;set;}
+    }
+}

@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\src\CSharpTools.CodeReader.Contracts\CSharpTools.CodeReader.Contracts.csproj" />
     <ProjectReference Include="..\..\src\CSharpTools.CodeReader.Domain\CSharpTools.CodeReader.Domain.csproj" />
     <ProjectReference Include="..\..\src\CSharpTools.Helpers\CSharpTools.Helpers.csproj" />
+    <ProjectReference Include="..\..\src\CSharpTools.IOC\CSharpTools.IOC.csproj" />
     <ProjectReference Include="..\CSharpTools.TestTools\CSharpTools.TestTools.csproj" />
   </ItemGroup>
 

@@ -3,7 +3,7 @@ using CSharpTools.Generic.Contracts;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpTools.CodeReader.Domain
+namespace CSharpTools.CodeReader.Domain.Builders
 {
     public class InterfacePropertyBuilder : IBuilder<Interface.Property, PropertyDeclarationSyntax>
     {

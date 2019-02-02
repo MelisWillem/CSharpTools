@@ -1,4 +1,5 @@
 ﻿using CSharpTools.Entities;
+using CSharpTools.Generic.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,12 @@ namespace CSharpTools.Helpers
         public bool Equals(Interface x, Interface y)
             => nameComparer.Equals(x.Name,y.Name)
             && x.Properties
+                .GetValueOrEmpty()
                 .OrderBy(p=>p.Name)
-                .SequenceEqual(y.Properties.OrderBy(p=>p.Name), propComparer);
+                .SequenceEqual(y.Properties
+                    .GetValueOrEmpty()
+                    .OrderBy(p=>p.Name),
+                propComparer);
 
         public int GetHashCode(Interface obj)
         {
