@@ -14,7 +14,7 @@ namespace CSharpTools.IOC
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            builder.RegisterType<InterfaceBuilder>()
+            builder.RegisterType<InterfaceMockBuilder>()
                 .AsImplementedInterfaces();
             builder.RegisterType<PropertyBuilder>()
                 .AsImplementedInterfaces();

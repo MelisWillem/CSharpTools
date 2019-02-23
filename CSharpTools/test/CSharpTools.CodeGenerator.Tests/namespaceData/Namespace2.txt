@@ -1,0 +1,3 @@
+﻿namespace Namespace2.Long.Test
+{
+}

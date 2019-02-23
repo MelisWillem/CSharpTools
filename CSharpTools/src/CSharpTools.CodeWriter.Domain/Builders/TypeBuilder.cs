@@ -1,5 +1,6 @@
 ﻿using CSharpTools.Entities;
 using CSharpTools.Generic.Contracts;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -7,10 +8,11 @@ using System.Text;
 
 namespace CSharpTools.CodeWriter.Domain.Builders
 {
-    public class InterfaceBuilder : IBuilder<NamespaceDeclarationSyntax, Interface>
+    public class TypeBuilder : IBuilder<TypeSyntax, TypeName>
     {
-        public NamespaceDeclarationSyntax Build(Interface @interface)
+        public TypeSyntax Build(TypeName input)
         {
+            //return new TypeSyntax()
             throw new NotImplementedException();
         }
     }

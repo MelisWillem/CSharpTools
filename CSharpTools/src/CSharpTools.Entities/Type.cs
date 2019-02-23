@@ -1,7 +1,7 @@
 ﻿namespace CSharpTools.Entities
 {
-    public class Type
+    public abstract class Type
     {
-        TypeName Name { get; set; }
+        public TypeName Name { get; set; }
     }
 }
