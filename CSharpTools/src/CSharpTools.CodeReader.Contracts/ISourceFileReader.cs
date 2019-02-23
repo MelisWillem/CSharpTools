@@ -6,6 +6,6 @@ namespace CSharpTools.CodeReader.Contracts
 {
     public interface ISourceFileReader
     {
-        string Read();
+        string Read(string path);
     }
 }

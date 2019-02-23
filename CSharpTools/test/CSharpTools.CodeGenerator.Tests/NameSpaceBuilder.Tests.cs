@@ -28,21 +28,22 @@ namespace CSharpTools.CodeGenerator.Tests
             Assert.Equal(expectedCode, res.ToFullString());
         }
 
+        public static string ReadFile(string fileName)
+            => File.ReadAllText(@"../../../namespaceData/" + fileName + ".txt", Encoding.UTF8);
+
         public static TheoryData<string, List<string>, string> GetData()
         {
-            Func<string,string> readFile =
-                (filename)=> File.ReadAllText(@"../../../namespaceData/"+ filename+".txt", Encoding.UTF8);
             return new TheoryData<string, List<string>, string>
             {
                 {
                     "Test1: simple single name namespace",
                     new List<string>{ "Namespace1"},
-                    readFile("Namespace1")
+                    ReadFile("Namespace1")
                 },
                 {
                     "Test2: long namespace name",
                     new List<string>{ "Namespace2" , "Long" , "Test"},
-                    readFile("Namespace2")
+                    ReadFile("Namespace2")
                 }
             };
         }

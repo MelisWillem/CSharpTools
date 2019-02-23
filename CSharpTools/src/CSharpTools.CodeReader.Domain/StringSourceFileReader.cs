@@ -7,13 +7,6 @@ namespace CSharpTools.CodeReader.Domain
 {
     public class StringSourceFileReader : ISourceFileReader
     {
-        private readonly string sourceString;
-
-        public StringSourceFileReader(string sourceString)
-        {
-            this.sourceString = sourceString;
-        }
-
-        public string Read() => sourceString;
+        public string Read(string sourceString) => sourceString;
     }
 }

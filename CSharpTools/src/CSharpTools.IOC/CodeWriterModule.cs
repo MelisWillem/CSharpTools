@@ -14,12 +14,18 @@ namespace CSharpTools.IOC
                 throw new ArgumentNullException(nameof(builder));
             }
 
+            builder.RegisterType<AccessModifierBuilder>()
+                .AsImplementedInterfaces();
             builder.RegisterType<InterfaceMockBuilder>()
                 .AsImplementedInterfaces();
-            builder.RegisterType<PropertyBuilder>()
+            builder.RegisterType<InterfaceMockMethodBuilder>()
                 .AsImplementedInterfaces();
             builder.RegisterType<NamespaceBuilder>()
                 .AsImplementedInterfaces();
+            builder.RegisterType<PropertyBuilder>()
+                .AsImplementedInterfaces();
+            builder.RegisterType<TypeBuilder>()
+               .AsImplementedInterfaces();
         }
     }
 }

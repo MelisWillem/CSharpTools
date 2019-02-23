@@ -26,16 +26,11 @@ namespace CSharpTools.CodeReader.Tests
             var basePath = @"../../../TestFiles";
             var fullFilePath = basePath + "/" + testFileName + ".txt";
 
-            var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule<CodeReaderModule>();
-            containerBuilder.RegisterModule<HelpersModule>();
-            var container = containerBuilder.Build();
+            var container = BuildIoC();
+            var namespaceBuilder = container.Resolve<IGenerator<Type, NamespaceDeclarationSyntax>>();
+            var sut = container.Resolve<CSharpReader>();
 
-            var namespaceBuilder = container
-                .Resolve<IGenerator<Type, NamespaceDeclarationSyntax>>();
-            var sut = new CSharpReader(new SingleSourceFileReader(fullFilePath), namespaceBuilder);
-
-            var res = sut.Read().OfType<Interface>().First();
+            var res = sut.Read(fullFilePath).OfType<Interface>().First();
 
             Assert.Equal(expected, res, container.Resolve<IEqualityComparer<Interface>>()); 
         }
@@ -72,6 +67,14 @@ namespace CSharpTools.CodeReader.Tests
                         .Build()
                 }
             };
+        }
+
+        public static IContainer BuildIoC()
+        {
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterModule(new CodeReaderModule { Reader = new SingleSourceFileReader() });
+            containerBuilder.RegisterModule<HelpersModule>();
+            return containerBuilder.Build();
         }
     }
 }

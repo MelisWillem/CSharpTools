@@ -1,0 +1,9 @@
+﻿namespace Test
+{
+	interface interface1
+	{
+		int testInt{get;set;}
+		string testString{get;set;}
+		double testDouble{get;set;}
+	}
+}

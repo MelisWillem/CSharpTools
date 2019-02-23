@@ -1,4 +1,5 @@
 ﻿using CSharpTools.CodeReader.Contracts;
+using CSharpTools.Entities;
 using CSharpTools.Generic.Contracts;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -22,10 +23,10 @@ namespace CSharpTools.CodeReader.Domain
             this.namespaceGenerator = namespaceGenerator;
         }
 
-        public IEnumerable<Type> Read()
+        public IEnumerable<Type> Read(string fileLocation)
         {
             var root = (CompilationUnitSyntax) CSharpSyntaxTree
-                .ParseText(reader.Read())
+                .ParseText(reader.Read(fileLocation))
                 .GetRoot();
 
             switch (root.Members.First())

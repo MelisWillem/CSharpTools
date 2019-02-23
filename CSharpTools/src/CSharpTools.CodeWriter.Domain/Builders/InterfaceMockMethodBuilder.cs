@@ -11,21 +11,31 @@ namespace CSharpTools.CodeWriter.Domain.Builders
 {
     public class InterfaceMockMethodBuilder : IBuilder<MethodDeclarationSyntax, Interface.Property>
     {
+        private readonly IBuilder<SyntaxToken, AccessModifier> modBuilder;
+
+        public InterfaceMockMethodBuilder(IBuilder<SyntaxToken, AccessModifier> modBuilder)
+        {
+            this.modBuilder = modBuilder;
+        }
+
         /// <summary>
         /// returns fluid based method to create property
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public MethodDeclarationSyntax Build(Interface.Property @interface)
+        public MethodDeclarationSyntax Build(Interface.Property property)
         {
-            var MockBuilderName = @interface.Name;
+            var MockBuilderName = property.Name;
 
-            TypeSyntax returnType = 
-                SyntaxFactory.PredefinedType(SyntaxFactory.ParseToken("string"));
-            SyntaxToken identifier = SyntaxFactory.ParseToken("With"+@interface.Name);
-            return  SyntaxFactory.MethodDeclaration(
-                returnType,
-                identifier);
+            TypeSyntax returnType = SyntaxFactory.PredefinedType(SyntaxFactory.ParseToken("string"));
+            SyntaxToken methodName = SyntaxFactory.ParseToken("With"+property.Name);
+
+            return  SyntaxFactory
+                .MethodDeclaration(
+                    returnType,
+                    methodName)
+                .AddModifiers(modBuilder.Build(AccessModifier.@public))
+                ;
         }
     }
 }

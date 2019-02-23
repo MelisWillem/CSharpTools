@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,8 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CSharpTools.CodeManipulator.Helpers.Contracts\CSharpTools.CodeManipulator.Helpers.Contracts.csproj" />
     <ProjectReference Include="..\..\src\CSharpTools.CodeManipulator.Helpers.Domain\CSharpTools.CodeManipulator.Helpers.Domain.csproj" />
     <ProjectReference Include="..\..\src\CSharpTools.CodeWriter.Domain\CSharpTools.CodeWriter.Domain.csproj" />
+    <ProjectReference Include="..\..\src\CSharpTools.IOC\CSharpTools.IOC.csproj" />
   </ItemGroup>
 
 </Project>
