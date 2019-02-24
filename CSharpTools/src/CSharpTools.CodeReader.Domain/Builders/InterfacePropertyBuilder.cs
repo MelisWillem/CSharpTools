@@ -20,7 +20,7 @@ namespace CSharpTools.CodeReader.Domain.Builders
             return new Interface.Property
             {
                 Name=propertyNode.Identifier.ValueText,
-                Type=typeBuilder.Build(propertyNode.Type)
+                Type= typeBuilder.Build(propertyNode.Type)
             };
         }
     }

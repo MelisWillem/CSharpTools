@@ -6,10 +6,11 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace CSharpTools.CodeWriter.Domain.Builders
 {
-    public class InterfaceMockMethodBuilder : IBuilder<MethodDeclarationSyntax, Interface.Property>
+    public class InterfaceMockMethodBuilder : IBuilder<MethodDeclarationSyntax, ClassDeclarationSyntax, Interface.Property>
     {
         private readonly IBuilder<SyntaxToken, AccessModifier> modBuilder;
 
@@ -23,19 +24,50 @@ namespace CSharpTools.CodeWriter.Domain.Builders
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public MethodDeclarationSyntax Build(Interface.Property property)
+        public MethodDeclarationSyntax Build(ClassDeclarationSyntax mockBuilder, Interface.Property property)
         {
             var MockBuilderName = property.Name;
 
-            TypeSyntax returnType = SyntaxFactory.PredefinedType(SyntaxFactory.ParseToken("string"));
-            SyntaxToken methodName = SyntaxFactory.ParseToken("With"+property.Name);
+            TypeSyntax returnType = ParseTypeName(mockBuilder.Identifier.ToString());
+            SyntaxToken methodName = ParseToken("With"+property.Name);
 
-            return  SyntaxFactory
-                .MethodDeclaration(
+            var lamdaExpressionMock = SimpleLambdaExpression(
+                Parameter(Identifier("m")),
+                MemberAccessExpression(
+                    SyntaxKind.SimpleMemberAccessExpression,
+                    IdentifierName("m"),
+                    IdentifierName(property.Name)));
+
+            var getPropertieExpression = 
+                        InvocationExpression(
+                            MemberAccessExpression(
+                                SyntaxKind.SimpleMemberAccessExpression,
+                                IdentifierName("_mock"),
+                                IdentifierName("Setup")))
+                        .AddArgumentListArguments(
+                            Argument(lamdaExpressionMock));
+
+            var returnResultExpression =
+                        InvocationExpression(
+                            MemberAccessExpression(
+                                SyntaxKind.SimpleMemberAccessExpression,
+                                getPropertieExpression,
+                                IdentifierName("Result")));
+
+            return
+                MethodDeclaration(
                     returnType,
                     methodName)
                 .AddModifiers(modBuilder.Build(AccessModifier.@public))
-                ;
+                .AddParameterListParameters(
+                    Parameter(
+                        Identifier(property.Name))
+                        .WithType(ParseTypeName(property.Type.Name)))
+                .AddBodyStatements(
+                    ExpressionStatement(
+                        returnResultExpression
+                            .AddArgumentListArguments(Argument(IdentifierName(property.Name)))))
+                .AddBodyStatements(ReturnStatement(ThisExpression()));
         }
     }
 }

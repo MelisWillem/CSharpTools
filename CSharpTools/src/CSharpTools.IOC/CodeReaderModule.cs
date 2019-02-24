@@ -6,7 +6,6 @@ using System;
 
 namespace CSharpTools.IOC
 {
-
     public class CodeReaderModule : Module
     {
         public ISourceFileReader Reader { get; set; }
@@ -22,15 +21,15 @@ namespace CSharpTools.IOC
                 .AsImplementedInterfaces();
             builder.RegisterType<InterfacePropertyBuilder>()
                 .AsImplementedInterfaces();
-            builder.RegisterType<SyntaxTokenTypeNameBuilder>()
+            builder.RegisterType<NamespaceBuilder>()
                 .AsImplementedInterfaces();
-            builder.RegisterType<TypeNameBuilder>()
+            builder.RegisterType<TypeBuilder>()
                 .AsImplementedInterfaces();
 
-            builder.RegisterType<NamespaceTypeGenerator>()
-                .AsImplementedInterfaces();
             builder.RegisterType<CSharpReader>()
                 .WithParameter(new TypedParameter(typeof(ISourceFileReader), Reader));
+            builder.RegisterType<NamespaceTypeGenerator>()
+                .AsImplementedInterfaces();
         }
     }
 }

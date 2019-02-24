@@ -1,6 +1,28 @@
 ﻿namespace Test
 {
-	class MockedInterface1Builder
-	{
-	}
+    class Mockedinterface1Builder
+    {
+        public Mockedinterface1Builder WithtestInt(int testInt)
+        {
+            _mock.Setup(m => m.testInt).Result(testInt);
+            return this;
+        }
+
+        public Mockedinterface1Builder WithtestString(string testString)
+        {
+            _mock.Setup(m => m.testString).Result(testString);
+            return this;
+        }
+
+        public Mockedinterface1Builder WithtestDouble(double testDouble)
+        {
+            _mock.Setup(m => m.testDouble).Result(testDouble);
+            return this;
+        }
+
+        public Mockedinterface1Builder Build()
+        {
+            return this;
+        }
+    }
 }

@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CSharpTools.Domain\CSharpTools.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

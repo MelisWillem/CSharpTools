@@ -1,0 +1,16 @@
+﻿namespace Test
+{
+    class Mockedinterface2Builder
+    {
+        public Mockedinterface2Builder WithTestPerson(Person TestPerson)
+        {
+            _mock.Setup(m => m.TestPerson).Result(TestPerson);
+            return this;
+        }
+
+        public Mockedinterface2Builder Build()
+        {
+            return this;
+        }
+    }
+}
